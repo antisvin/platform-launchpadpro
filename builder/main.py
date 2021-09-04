@@ -8,9 +8,10 @@ PLATFORM_DIR = env.PioPlatform().get_dir()
 
 env.Replace(
     CC='arm-none-eabi-gcc',
+    CXX='arm-none-eabi-g++',
     OBJCOPY='arm-none-eabi-objcopy',
     LDSCRIPT_PATH=join(PLATFORM_DIR, 'ld/stm32_flash.ld'),
-    CCFLAGS=[
+    CFLAGS=[
         '-Os',
         '-Wall',
         '-D_STM32F103RBT6_',
@@ -19,6 +20,8 @@ env.Replace(
         '-mthumb',
         '-mcpu=cortex-m3',
         '-fsigned-char',
+        '-finline-small-functions',
+        '-findirect-inlining',
         '-DSTM32F10X_MD',
         '-DUSE_STDPERIPH_DRIVER',
         '-DHSE_VALUE=6000000UL',
@@ -26,6 +29,32 @@ env.Replace(
         '-DUSE_GLOBAL_CONFIG',
         '-ffunction-sections',
         '-std=c99',
+        '-mlittle-endian'
+    ],
+    CPPFLAGS=[
+        '-Os',
+        '-Wall',
+        '-D_STM32F103RBT6_',
+        '-D_STM3x_',
+        '-D_STM32x_',
+        '-mthumb',
+        '-mcpu=cortex-m3',
+        '-fsigned-char',
+        '-finline-small-functions',
+        '-findirect-inlining',
+        '-DSTM32F10X_MD',
+        '-DUSE_STDPERIPH_DRIVER',
+        '-DHSE_VALUE=6000000UL',
+        '-DCMSIS',
+        '-DUSE_GLOBAL_CONFIG',
+        '-ffunction-sections',
+        '-std=c++17',
+        '-ffreestanding',
+        '-fno-exceptions',
+        '-fno-non-call-exceptions',
+        '-fno-rtti',
+        '-fno-common',
+        '-fdata-sections',
         '-mlittle-endian'
     ],
     LINKFLAGS=[
