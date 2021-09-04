@@ -3,11 +3,14 @@
     "url": "https://novationmusic.com/launch/launchpad-pro",
     "vendor": "Novation",
     "build": {
+        "core": "stm32",
+        "cpu": "cortex-m3",
         "mcu": "STM32F103RBT6",
         "f_cpu": "72000000L"
     },
     "upload": {
         "maximum_ram_size": 20480,
-        "maximum_size": 131072
+        "maximum_size": 131072,
+        "protocol": ""
     }
 }
